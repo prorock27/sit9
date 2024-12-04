@@ -29,4 +29,9 @@
         <mkdir dir="${dist.dir}"/>
         <jar destfile="${dist.dir}/Calculator.jar" basedir="${build.dir}"/>
     </target>
+    
+    <target name="deploy" depends="build">
+        <echo message ="Deploying"/>
+        <copy file="${dist.dir}/Calculator.jar"  todir="/path/to/deploy"/>
+    </target>
 </project>
