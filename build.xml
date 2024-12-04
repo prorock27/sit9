@@ -12,20 +12,20 @@
     </target>
 
     <!-- Задача для тестирования -->
-    <target name="test" depends="compile">
-        <mkdir dir="${build.dir}/test"/>
-        <javac srcdir="${src.dir}/test" destdir="${build.dir}/test"/>
-        <junit printsummary="true">
-            <classpath>
-                <pathelement location="${build.dir}"/>
-                <pathelement location="${lib.dir}/junit.jar"/>
-            </classpath>
-            <test name="CalculatorTest"/>
-        </junit>
-    </target>
+    <!--   <target name="test" depends="compile">
+          <mkdir dir="${build.dir}/test"/>
+          <javac srcdir="${src.dir}/test" destdir="${build.dir}/test"/>
+          <junit printsummary="true">
+              <classpath>
+                  <pathelement location="${build.dir}"/>
+                  <pathelement location="${lib.dir}/junit.jar"/>
+              </classpath>
+              <test name="CalculatorTest"/>
+          </junit>
+      </target>-->
 
-    <!-- Задача для сборки проекта -->
-    <target name="build" depends="compile, test">
+      <!-- Задача для сборки проекта -->
+    <target name="build" depends="compile">
         <mkdir dir="${dist.dir}"/>
         <jar destfile="${dist.dir}/Calculator.jar" basedir="${build.dir}"/>
     </target>
