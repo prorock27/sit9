@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CI_CD_Project" default="build" basedir=".">
+    <property name="build.dir" value="build"/>
+    <property name="src.dir" value="src"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="dist.dir" value="dist"/>
+
+    <!-- Задача для компиляции -->
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+    </target>
+
+    <!-- Задача для тестирования -->
+    <target name="test" depends="compile">
+        <mkdir dir="${build.dir}/test"/>
+        <javac srcdir="${src.dir}/test" destdir="${build.dir}/test"/>
+        <junit printsummary="true">
+            <classpath>
+                <pathelement location="${build.dir}"/>
+                <pathelement location="${lib.dir}/junit.jar"/>
+            </classpath>
+            <test name="CalculatorTest"/>
+        </junit>
+    </target>
+
+    <!-- Задача для сборки проекта -->
+    <target name="build" depends="compile, test">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/Calculator.jar" basedir="${build.dir}"/>
+    </target>
+</project>
